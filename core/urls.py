@@ -1,6 +1,7 @@
+"""URLs module."""
 from django.urls import path
 
-from core.views import home, about
+from core.views import about, home
 
 app_name = "core"
 
