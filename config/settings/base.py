@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Project apps
     "core",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -106,3 +107,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Login settings
+# https://docs.djangoproject.com/en/4.2/topics/auth/default/#module-django.contrib.auth.views
+
+LOGIN_REDIRECT_URL = "/dashboard/"
+LOGIN_URL = "/accounts/login/"
+LOGOUT_REDIRECT_URL = "/accounts/login/"
