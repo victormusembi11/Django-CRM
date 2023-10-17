@@ -29,5 +29,5 @@ jobs:
       - name: Run Tox
         run: tox -e py
         env:
-          SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
-          DEBUG: ${{ secrets.DJANGO_DEBUG }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          DEBUG: ${{ secrets.DEBUG }}
