@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     # Project apps
     "core",
     "accounts",
+    "dashboard",
 ]
 
 MIDDLEWARE = [
