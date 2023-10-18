@@ -35,3 +35,10 @@ def lead(user):
     )
     lead.save()
     return lead
+
+
+@pytest.fixture
+def auth_client(client, user):
+    """Test client with authenticated user."""
+    client.login(username=user.username, password="password")
+    return client
