@@ -9,6 +9,7 @@ def test_lead_list(auth_client):
     response = auth_client.get("/lead/")
     assert response.status_code == 200
     assert "lead/lead_list.html" in (t.name for t in response.templates)
+    assert "leads" in response.context
 
 
 def test_add_lead(auth_client):

@@ -3,12 +3,14 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
 from lead.forms import AddLeadForm
+from lead.models import Lead
 
 
 @login_required
 def lead_list(request):
     """Lead list view."""
-    return render(request, "lead/lead_list.html")
+    leads = Lead.objects.filter(created_by=request.user)
+    return render(request, "lead/lead_list.html", {"leads": leads})
 
 
 @login_required
