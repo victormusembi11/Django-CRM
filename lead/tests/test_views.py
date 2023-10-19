@@ -34,6 +34,28 @@ def test_lead_delete(auth_client, lead):
     assert response.url == "/lead/"
 
 
+def test_lead_edit(auth_client, lead):
+    """Test lead edit view."""
+    response = auth_client.get(f"/lead/{lead.pk}/edit/")
+    assert response.status_code == 200
+    assert "lead/lead_edit.html" in (t.name for t in response.templates)
+    assert "form" in response.context
+
+
+def test_lead_edit_post(auth_client, lead):
+    """Test lead edit post view."""
+    data = {
+        "name": lead.name + " edited",
+        "email": lead.email,
+        "description": lead.description + " edited",
+        "priority": lead.priority,
+        "status": lead.status,
+    }
+    response = auth_client.post(f"/lead/{lead.pk}/edit/", data=data)
+    assert response.status_code == 302
+    assert response.url == "/lead/"
+
+
 def test_add_lead_post(auth_client):
     """Test add lead post view."""
     data = {

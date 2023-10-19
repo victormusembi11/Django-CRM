@@ -31,6 +31,24 @@ def lead_delete(request, pk):
 
 
 @login_required
+def lead_edit(request, pk):
+    """Lead edit view."""
+    lead = get_object_or_404(Lead, created_by=request.user, pk=pk)
+
+    if request.method == "POST":
+        form = AddLeadForm(request.POST, instance=lead)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Lead updated successfully")
+            return redirect("lead:lead_list")
+
+    form = AddLeadForm(instance=lead)
+
+    return render(request, "lead/lead_edit.html", {"form": form})
+
+
+@login_required
 def add_lead(request):
     """Add lead view."""
     if request.method == "POST":
