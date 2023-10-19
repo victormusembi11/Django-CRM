@@ -45,4 +45,4 @@ def test_add_lead_post(auth_client):
     }
     response = auth_client.post("/lead/add/", data=data)
     assert response.status_code == 302
-    assert response.url == "/dashboard/"
+    assert response.url == "/lead/"

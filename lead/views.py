@@ -41,7 +41,8 @@ def add_lead(request):
             lead.created_by = request.user
             lead.save()
 
-            return redirect("dashboard:dashboard")
+            messages.success(request, "Lead added successfully")
+            return redirect("lead:lead_list")
 
     form = AddLeadForm()
 
