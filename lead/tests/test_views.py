@@ -19,6 +19,14 @@ def test_add_lead(auth_client):
     assert "lead/add_lead.html" in (t.name for t in response.templates)
 
 
+def test_lead_detail(auth_client, lead):
+    """Test lead detail view."""
+    response = auth_client.get(f"/lead/{lead.pk}/")
+    assert response.status_code == 200
+    assert "lead/lead_detail.html" in (t.name for t in response.templates)
+    assert "lead" in response.context
+
+
 def test_add_lead_post(auth_client):
     """Test add lead post view."""
     data = {

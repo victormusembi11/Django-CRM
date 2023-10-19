@@ -1,6 +1,6 @@
 """Lead app views."""
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from lead.forms import AddLeadForm
 from lead.models import Lead
@@ -11,6 +11,13 @@ def lead_list(request):
     """Lead list view."""
     leads = Lead.objects.filter(created_by=request.user)
     return render(request, "lead/lead_list.html", {"leads": leads})
+
+
+@login_required
+def lead_detail(request, pk):
+    """Lead detail belonging to user view."""
+    lead = get_object_or_404(Lead, created_by=request.user, pk=pk)
+    return render(request, "lead/lead_detail.html", {"lead": lead})
 
 
 @login_required
