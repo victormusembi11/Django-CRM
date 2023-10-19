@@ -6,6 +6,12 @@ from lead.forms import AddLeadForm
 
 
 @login_required
+def lead_list(request):
+    """Lead list view."""
+    return render(request, "lead/lead_list.html")
+
+
+@login_required
 def add_lead(request):
     """Add lead view."""
     if request.method == "POST":
