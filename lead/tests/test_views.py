@@ -27,6 +27,13 @@ def test_lead_detail(auth_client, lead):
     assert "lead" in response.context
 
 
+def test_lead_delete(auth_client, lead):
+    """Test lead delete and redirect."""
+    response = auth_client.get(f"/lead/{lead.pk}/delete/")
+    assert response.status_code == 302
+    assert response.url == "/lead/"
+
+
 def test_add_lead_post(auth_client):
     """Test add lead post view."""
     data = {

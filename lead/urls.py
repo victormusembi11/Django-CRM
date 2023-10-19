@@ -8,5 +8,6 @@ app_name = "lead"
 urlpatterns = [
     path("", views.lead_list, name="lead_list"),
     path("<int:pk>/", views.lead_detail, name="lead_detail"),
+    path("<int:pk>/delete/", views.lead_delete, name="lead_delete"),
     path("add/", views.add_lead, name="add_lead"),
 ]

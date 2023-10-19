@@ -1,4 +1,5 @@
 """Lead app views."""
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -18,6 +19,15 @@ def lead_detail(request, pk):
     """Lead detail belonging to user view."""
     lead = get_object_or_404(Lead, created_by=request.user, pk=pk)
     return render(request, "lead/lead_detail.html", {"lead": lead})
+
+
+@login_required
+def lead_delete(request, pk):
+    """Delete lead and redirect to lead list view."""
+    lead = get_object_or_404(Lead, created_by=request.user, pk=pk)
+    lead.delete()
+    messages.success(request, "Lead deleted successfully")
+    return redirect("lead:lead_list")
 
 
 @login_required

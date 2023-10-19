@@ -23,6 +23,12 @@
     <p class="font-semibold">Modified at</p>
     <p class="mb-6">{{ lead.modified_at }}</p>
 
+    <hr class="my-4">
+
+    <a href="{% url 'lead:lead_delete' lead.id %}">Delete</a>
+
+    <hr class="my-4">
+
     <a href="{% url 'lead:lead_list' %}">Back to leads</a>
 
 </div>
