@@ -23,8 +23,8 @@ python3 -m pip install -r requirements.txt
 Create a .env file in the root dir of the project and set the following env variables.
 
 ```bash
-DJANGO_SECRET_KEY = your-secret-key
-DJANGO_DEBUG = True
+SECRET_KEY = your-secret-key
+DEBUG = True
 ```
 
 ### Run DB migrations
