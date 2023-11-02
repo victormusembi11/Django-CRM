@@ -68,3 +68,10 @@ def test_add_lead_post(auth_client):
     response = auth_client.post("/lead/add/", data=data)
     assert response.status_code == 302
     assert response.url == "/lead/"
+
+
+def test_convert_to_client(auth_client, lead):
+    """Test convert lead to client view."""
+    response = auth_client.get(f"/lead/{lead.pk}/convert/")
+    assert response.status_code == 302
+    assert response.url == "/lead/"

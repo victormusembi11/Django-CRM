@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
+from client.models import Client
 from lead.forms import AddLeadForm
 from lead.models import Lead
 
@@ -65,3 +66,24 @@ def add_lead(request):
     form = AddLeadForm()
 
     return render(request, "lead/add_lead.html", {"form": form})
+
+
+@login_required
+def convert_to_client(request, pk):
+    """Convert lead to client."""
+    lead = get_object_or_404(Lead, created_by=request.user, pk=pk)
+
+    # create client
+    Client.objects.create(
+        name=lead.name,
+        email=lead.email,
+        description=lead.description,
+        created_by=request.user,
+    )
+
+    lead.converted_to_client = True
+    lead.save()
+
+    messages.success(request, "Lead converted to client successfully")
+
+    return redirect("lead:lead_list")
