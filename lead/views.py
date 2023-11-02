@@ -11,7 +11,7 @@ from lead.models import Lead
 @login_required
 def lead_list(request):
     """Lead list view."""
-    leads = Lead.objects.filter(created_by=request.user)
+    leads = Lead.objects.filter(created_by=request.user, converted_to_client=False)
     return render(request, "lead/lead_list.html", {"leads": leads})
 
 
